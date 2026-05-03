@@ -3,7 +3,6 @@
 # 🚀 AI-Powered Predictive Maintenance & LLM Workflow System
 **A full-stack, production-ready AI-native application demonstrating end-to-end ownership of the software and AI stack.**
 
-![Project Banner]()
 
 ---
 
