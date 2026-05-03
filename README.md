@@ -1,8 +1,3 @@
----
-
-# 🚀 AI-Powered Predictive Maintenance & LLM Workflow System
-**A full-stack, production-ready AI-native application demonstrating end-to-end ownership of the software and AI stack.**
-
 
 ---
 
@@ -179,8 +174,7 @@ ai-predictive-maintenance/
 ### **Prerequisites**
 - Python 3.9+
 - Node.js 16+
-- Docker
-- PostgreSQL
+- MongoDB
 - AWS/GCP/Azure account (for deployment)
 
 ### **Local Setup**
