@@ -1,3 +1,6 @@
+<!--- Bismillahirrahmanirraheem.--->
+
+# 🚀 AI Predictive Maintenance & LLM Workflow System
 
 ---
 
@@ -13,12 +16,17 @@ It demonstrates **end-to-end ownership** of the **frontend, backend, database, A
 ---
 
 ## ✨ **Key Features**
+
+
+Key Features
+
+
 | Feature | Description | Technologies Used |
 |---------|-------------|-------------------|
 | **Predictive Maintenance** | Uses ML models to predict equipment failures before they occur. | Python, Scikit-learn, TensorFlow/PyTorch |
 | **LLM Workflows** | Integrates LLMs for natural language processing (e.g., generating maintenance reports, chatbot support). | OpenAI API, LangChain, Hugging Face |
 | **Dynamic Scheduling** | Automatically schedules maintenance tasks based on AI predictions. | FastAPI, Celery, Redis |
-| **Full-Stack Ownership** | Owns the entire stack: frontend, backend, database, and AI/ML. | React.js, FastAPI, PostgreSQL, Docker |
+| **Full-Stack Ownership** | Owns the entire stack: frontend, backend, database, and AI/ML. | React.js, FastAPI, **MongoDB**, Docker |
 | **Production Deployment** | Deployed on cloud platforms with CI/CD pipelines. | AWS (EC2, S3, Lambda), GitHub Actions, Docker |
 | **Real-Time Monitoring** | Tracks equipment health and sends alerts for anomalies. | Prometheus, Grafana, WebSockets |
 | **Scalable Architecture** | Designed for high availability and scalability. | Kubernetes, Terraform |
@@ -26,6 +34,7 @@ It demonstrates **end-to-end ownership** of the **frontend, backend, database, A
 ---
 
 ## 🛠 **Tech Stack**
+
 ### **Frontend**
 - **Framework**: React.js (TypeScript)
 - **UI Library**: Material-UI / Tailwind CSS
@@ -33,13 +42,14 @@ It demonstrates **end-to-end ownership** of the **frontend, backend, database, A
 - **Visualization**: Chart.js, D3.js
 
 ### **Backend**
-- **Framework**: FastAPI (Python) / Node.js
+- **Framework**: FastAPI (Python)
 - **Authentication**: JWT, OAuth2
 - **API Design**: RESTful + WebSockets for real-time updates
+- **Database**: **MongoDB** (with Beanie ODM and Motor for async operations)
 
 ### **Database**
-- **Primary**: PostgreSQL (Relational)
-- **Secondary**: Redis (Caching), MongoDB (NoSQL for unstructured data)
+- **Primary**: **MongoDB** (NoSQL, schema-flexible)
+- **Secondary**: Redis (Caching)
 - **Vector DB**: Pinecone / Weaviate (for LLM embeddings)
 
 ### **AI/ML Stack**
@@ -72,11 +82,16 @@ It demonstrates **end-to-end ownership** of the **frontend, backend, database, A
 ---
 
 ### **2. Experience Owning All Parts of the Stack**
+
+
+Stack Ownership
+
+
 | **Component**       | **Your Role**                                                                                     | **Technologies**                          |
 |----------------------|---------------------------------------------------------------------------------------------------|-------------------------------------------|
 | **Frontend**         | Built a **responsive, user-friendly dashboard** for visualizing predictions and scheduling tasks. | React.js, Material-UI                     |
-| **Backend**          | Developed **scalable APIs** for AI model inference, scheduling, and data management.             | FastAPI, Node.js                          |
-| **Database**         | Designed **PostgreSQL schemas** for equipment data and **Redis caching** for performance.        | PostgreSQL, Redis                         |
+| **Backend**          | Developed **scalable APIs** for AI model inference, scheduling, and data management.             | FastAPI, **MongoDB**, Redis               |
+| **Database**         | Designed **MongoDB schemas** for equipment data and **Redis caching** for performance.           | **MongoDB**, Redis                        |
 | **AI/ML Models**     | Trained **predictive maintenance models** and integrated **LLMs for workflow automation**.      | TensorFlow, LangChain, OpenAI API         |
 | **Deployment**       | Managed **Docker containers, Kubernetes clusters, and cloud infrastructure**.                  | Docker, Kubernetes, AWS/GCP               |
 
@@ -139,20 +154,64 @@ ai-predictive-maintenance/
 │   │   └── App.js          # Main application
 │   └── package.json
 │
-├── /backend                # FastAPI/Node.js server
-│   ├── app/                # API routes and logic
-│   │   ├── models/         # ML models (ONNX, Pickle)
-│   │   ├── services/       # Business logic (e.g., scheduling)
-│   │   ├── schemas/        # Pydantic models
-│   │   └── main.py         # FastAPI entry point
+├── /backend                # FastAPI server (MongoDB)
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py          # FastAPI app entry point
+│   │   ├── config.py        # Configuration settings
+│   │   ├── database.py      # MongoDB connection
+│   │   ├── schemas.py       # Pydantic models
+│   │   ├── crud/            # CRUD operations
+│   │   │   ├── __init__.py
+│   │   │   ├── equipment.py
+│   │   │   ├── alert.py
+│   │   │   ├── report.py
+│   │   │   └── schedule.py
+│   │   ├── api/             # API routes
+│   │   │   ├── __init__.py
+│   │   │   ├── v1/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── endpoints/
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── equipment.py
+│   │   │   │   │   ├── alert.py
+│   │   │   │   │   ├── report.py
+│   │   │   │   │   └── schedule.py
+│   │   │   │   └── router.py
+│   │   │   └── dependencies.py
+│   │   ├── models/          # MongoDB models (Beanie)
+│   │   │   ├── __init__.py
+│   │   │   ├── equipment.py
+│   │   │   ├── alert.py
+│   │   │   ├── report.py
+│   │   │   └── schedule.py
+│   │   ├── services/        # Business logic and AI services
+│   │   │   ├── __init__.py
+│   │   │   ├── ai_service.py
+│   │   │   ├── llm_service.py
+│   │   │   └── scheduling_service.py
+│   │   ├── utils/           # Utility functions
+│   │   │   ├── __init__.py
+│   │   │   ├── logger.py
+│   │   │   └── helpers.py
+│   │   └── tests/           # Unit and integration tests
+│   │       ├── __init__.py
+│   │       ├── test_equipment.py
+│   │       └── test_alerts.py
+│   ├── ml_models/           # AI/ML models and training scripts
+│   │   ├── predictive_model/
+│   │   │   ├── train.py
+│   │   │   ├── predict.py
+│   │   │   └── model.pkl
+│   │   └── data/
+│   │       ├── equipment_data.csv
+│   │       └── sensor_data.json
+│   ├── scripts/
+│   │   ├── seed_db.py       # Script to seed MongoDB
+│   │   └── setup_db.py
 │   ├── requirements.txt
-│   └── Dockerfile
-│
-├── /ml_models              # AI/ML models and notebooks
-│   ├── predictive/         # Failure prediction models
-│   ├── llm_workflows/      # LLM integrations (LangChain)
-│   ├── data/               # Datasets (sensor data, logs)
-│   └── notebooks/          # Jupyter notebooks for EDA, training
+│   ├── .env.example
+│   └── README.md
 │
 ├── /devops                 # Deployment and CI/CD
 │   ├── docker-compose.yml
@@ -164,55 +223,96 @@ ai-predictive-maintenance/
 │   ├── api_docs.md         # API documentation (Swagger)
 │   └── setup_guide.md      # Local setup instructions
 │
-├── README.md               # This file
+├── README.md
 └── LICENSE
 ```
 
 ---
 
 ## 🛠 **Getting Started**
+
 ### **Prerequisites**
-- Python 3.9+
+- Python 3.10+
 - Node.js 16+
-- MongoDB
+- **MongoDB** (local or cloud)
 - AWS/GCP/Azure account (for deployment)
 
-### **Local Setup**
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/NoIDontKnow/ai-predictive-maintenance.git
-   cd ai-predictive-maintenance
-   ```
+---
 
-2. **Set up the backend**:
+### **Local Setup**
+
+#### **1. Backend (FastAPI + MongoDB)**
+1. **Install MongoDB**:
+   - **Mac**: `brew tap mongodb/brew && brew install mongodb-community`
+   - **Linux**: Follow [MongoDB’s official guide](https://docs.mongodb.com/manual/administration/install-on-linux/)
+   - **Windows**: Download from [MongoDB’s website](https://www.mongodb.com/try/download/community)
+   - Start MongoDB:
+     ```bash
+     mongod --dbpath /path/to/your/data/directory
+     ```
+
+2. **Navigate to the backend directory**:
    ```bash
    cd backend
+   ```
+
+3. **Create a virtual environment**:
+   ```bash
    python -m venv venv
    source venv/bin/activate  # Linux/Mac
    venv\Scripts\activate     # Windows
-   pip install -r requirements.txt
-   uvicorn app.main:app --reload
    ```
 
-3. **Set up the frontend**:
+4. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Set up environment variables**:
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` with your **MongoDB connection string** and **OpenAI API key**:
+   ```env
+   MONGO_DETAILS=mongodb://localhost:27017/ai_maintenance
+   OPENAI_API_KEY=your-openai-api-key
+   ```
+
+6. **Seed the database (optional)**:
+   ```bash
+   python scripts/seed_db.py
+   ```
+
+7. **Start the FastAPI server**:
+   ```bash
+   uvicorn app.main:fastapi_app --reload
+   ```
+   The API will be available at `http://localhost:8000`.
+
+---
+
+#### **2. Frontend (React.js)**
+1. **Navigate to the frontend directory**:
    ```bash
    cd ../frontend
-   npm install
-   npm start
    ```
 
-4. **Run the ML models**:
-   - Train models using Jupyter notebooks in `/ml_models/notebooks`.
-   - Deploy models as APIs (see `/backend/app/models`).
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-5. **Deploy to cloud**:
-   - Use `docker-compose.yml` for local testing.
-   - Deploy to **AWS ECS/Kubernetes** or **GCP Cloud Run** for production.
+3. **Start the React app**:
+   ```bash
+   npm start
+   ```
+   The frontend will be available at `http://localhost:3000`.
 
 ---
 ## 📊 **Example Workflows**
+
 ### **1. Predictive Maintenance**
-1. **Data Ingestion**: Sensor data is streamed into PostgreSQL.
+1. **Data Ingestion**: Sensor data is streamed into **MongoDB**.
 2. **Model Inference**: FastAPI endpoint calls the predictive model (TensorFlow).
 3. **Alert Generation**: If failure risk > threshold, an alert is sent via **WebSocket/Email**.
 4. **Dashboard Update**: React frontend displays predictions and alerts in real-time.
@@ -220,7 +320,7 @@ ai-predictive-maintenance/
 ### **2. LLM-Powered Maintenance Reports**
 1. **User Query**: "Generate a report for Equipment X."
 2. **LLM Processing**: LangChain retrieves relevant data (sensor logs, past issues) and generates a **natural language report**.
-3. **Output**: Report is displayed in the frontend and saved to the database.
+3. **Output**: Report is displayed in the frontend and saved to **MongoDB**.
 
 ---
 ## 🎯 **Future Improvements**
@@ -247,8 +347,10 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 For questions or collaboration, reach out:
 - **Email**: [abdaferfav@tuta.io](mailto:abdaferfav@tuta.io)
 - **GitHub**: [@NoIDontKnow](https://github.com/NoIDontKnow)
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/favourabayomi-dada)
+- **LinkedIn**: [Favour Abayomi-Dada](https://linkedin.com/in/favourabayomi-dada)
 ```
 
 ---
 
+- If you want to add **authentication (JWT/OAuth)**, **real-time updates (WebSockets)**, or **deployment guides for MongoDB Atlas**, let me know!
+- Would you like me to add a **section on how to deploy the backend to MongoDB Atlas**?
